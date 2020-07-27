@@ -1,28 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 
 namespace WpfApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
             InitializeComponent();
+
+            const int columnCount = 6;
+            const int rowCount = 4;
+
+            Width = 100 * columnCount;
+            Height = 100 * rowCount;
+            MakeCoresGrid(CoresGrid, columnCount, rowCount);
+        }
+
+        private static void MakeCoresGrid(Grid grid, int columnCount, int rowCount)
+        {
+            for (var row = 0; row < rowCount; row++)
+                grid.RowDefinitions.Add(new RowDefinition {Height = new GridLength(1, GridUnitType.Star)});
+            for (var column = 0; column < columnCount; column++)
+                grid.ColumnDefinitions.Add(new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)});
+
+            var core = 1;
+            for (var row = 0; row < rowCount; row++)
+            {
+                for (var column = 0; column < columnCount; column++)
+                {
+                    var button = new ToggleButton {Content = $"Core {core++}"};
+                    Grid.SetRow(button, row);
+                    Grid.SetColumn(button, column);
+                    grid.Children.Add(button);
+                }
+            }
         }
     }
 }
