@@ -21,11 +21,11 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Grid.Row="0">Button 1</Button>
-        <Button Grid.Column="1" Grid.Row="0">Button 2</Button>
-        <Button Grid.Column="2" Grid.Row="0">Button 3</Button>
-        <Button Grid.Column="3" Grid.Row="0">Button 4</Button>
-        <Button Grid.Column="4" Grid.Row="0">Button 5</Button>
-        <Button Grid.Column="5" Grid.Row="0">Button 6</Button>
+        <ToggleButton Grid.Column="0" Grid.Row="0">CPU 01</ToggleButton>
+        <ToggleButton Grid.Column="1" Grid.Row="0">CPU 02</ToggleButton>
+        <ToggleButton Grid.Column="2" Grid.Row="0">CPU 03</ToggleButton>
+        <ToggleButton Grid.Column="3" Grid.Row="0">CPU 04</ToggleButton>
+        <ToggleButton Grid.Column="4" Grid.Row="0">CPU 05</ToggleButton>
+        <ToggleButton Grid.Column="5" Grid.Row="0">CPU 06</ToggleButton>
     </Grid>
 </Window>
