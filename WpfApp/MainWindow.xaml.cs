@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
@@ -13,8 +14,7 @@ namespace WpfApp
         {
             InitializeComponent();
 
-            const int columnCount = 6;
-            const int rowCount = 4;
+            var (columnCount, rowCount) = Utils.Dimensions.Calculate(Environment.ProcessorCount);
 
             Width = 100 * columnCount;
             Height = 100 * rowCount;
