@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{A61FCD72-8581-4ED2-9157-C438EDFF6BF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.Tests", "Utils.Tests\Utils.Tests.csproj", "{B9523E00-0493-4D7B-901A-FD138588C94A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{A61FCD72-8581-4ED2-9157-C438EDFF6BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A61FCD72-8581-4ED2-9157-C438EDFF6BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A61FCD72-8581-4ED2-9157-C438EDFF6BF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9523E00-0493-4D7B-901A-FD138588C94A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9523E00-0493-4D7B-901A-FD138588C94A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9523E00-0493-4D7B-901A-FD138588C94A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9523E00-0493-4D7B-901A-FD138588C94A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
