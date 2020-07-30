@@ -15,41 +15,53 @@ namespace WpfApp
 
             var (columnCount, rowCount) = Utils.Dimensions.Calculate(Environment.ProcessorCount);
 
-            Width = 100 * columnCount;
-            Height = 100 * rowCount;
-            MakeCoresGrid(CoresGrid, columnCount, rowCount);
+            SetupWindow(this, columnCount, rowCount, 100);
+            SetupGrid(CoresGrid, columnCount, rowCount);
+            
+            _buttons = MakeCoreButtons(CoresGrid, columnCount, rowCount);
+            foreach (var button in _buttons)
+                button.Click += (sender, args) => UpdateTitleFromCoresState();
+
             UpdateTitleFromCoresState();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////
         
-        private void MakeCoresGrid(Grid grid, int columnCount, int rowCount)
+        private static void SetupWindow(MainWindow window, int columnCount, int rowCount, int cellSize)
+        {
+            window.Width = cellSize * columnCount;
+            window.Height = cellSize * rowCount;
+        }
+
+        private static void SetupGrid(Grid grid, int columnCount, int rowCount)
         {
             for (var row = 0; row < rowCount; row++)
                 grid.RowDefinitions.Add(new RowDefinition {Height = new GridLength(1, GridUnitType.Star)});
             for (var column = 0; column < columnCount; column++)
                 grid.ColumnDefinitions.Add(new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)});
+        }
 
+        private static IEnumerable<ToggleButton> MakeCoreButtons(Grid grid, int columnCount, int rowCount)
+        {
             var core = 1;
+            var buttons = new List<ToggleButton>();
             for (var row = 0; row < rowCount; row++)
             {
                 for (var column = 0; column < columnCount; column++)
                 {
                     var button = new ToggleButton {Content = $"Core {core++}"};
-                    button.Click += OnButtonClick;
                     Grid.SetRow(button, row);
                     Grid.SetColumn(button, column);
                     grid.Children.Add(button);
-                    _coreButtons.Add(button);
+                    buttons.Add(button);
                 }
             }
+            return buttons;
         }
 
-        private void OnButtonClick(object sender, RoutedEventArgs e)
-        {
-            UpdateTitleFromCoresState();
-        }
+        //////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////
 
         private void UpdateTitleFromCoresState()
         {
@@ -58,12 +70,12 @@ namespace WpfApp
 
         private string ConstructCoresState()
         {
-            return string.Join("", _coreButtons.Select(b => b?.IsChecked ?? false ? "1" : "0"));
+            return string.Join("", _buttons.Select(b => b?.IsChecked ?? false ? "1" : "0"));
         }
 
         //////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////
         
-        private readonly List<ToggleButton> _coreButtons = new List<ToggleButton>();
+        private readonly IEnumerable<ToggleButton> _buttons;
     }
 }
