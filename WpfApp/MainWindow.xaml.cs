@@ -17,12 +17,13 @@ namespace WpfApp
 
             SetupWindow(this, columnCount, rowCount, 100);
             SetupGrid(CoresGrid, columnCount, rowCount);
+
+            _workload = new Workload.Workload();
+            _workload.Start();
             
             _buttons = MakeCoreButtons(CoresGrid, columnCount, rowCount);
             foreach (var button in _buttons)
-                button.Click += (sender, args) => UpdateTitleFromCoresState();
-
-            UpdateTitleFromCoresState();
+                button.Click += (sender, args) => UpdateWorkloadFromCoresState();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////
@@ -63,19 +64,15 @@ namespace WpfApp
         //////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////
 
-        private void UpdateTitleFromCoresState()
+        private void UpdateWorkloadFromCoresState()
         {
-            Title = ConstructCoresState();
-        }
-
-        private string ConstructCoresState()
-        {
-            return string.Join("", _buttons.Select(b => b?.IsChecked ?? false ? "1" : "0"));
+            _workload.SetMask(_buttons.Select(b => b?.IsChecked ?? false));
         }
 
         //////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////
         
         private readonly IEnumerable<ToggleButton> _buttons;
+        private readonly Workload.Workload _workload;
     }
 }

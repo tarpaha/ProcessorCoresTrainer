@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Utils\Utils.csproj" />
+      <ProjectReference Include="..\Workload\Workload.csproj" />
     </ItemGroup>
 
 </Project>
